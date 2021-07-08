@@ -394,8 +394,6 @@
         <activity android:name=".ui.activity.ManageSpaceActivity"
                   android:label="@string/manage_space_title"
                   android:theme="@style/Theme.ownCloud" />
-
-
         <service
             android:name=".services.AccountManagerService"
             android:enabled="true"
@@ -410,6 +408,17 @@
         <activity
             android:name="com.nextcloud.client.etm.EtmActivity"
             android:theme="@style/Theme.ownCloud.Toolbar" />
+
+        <meta-data
+            android:name="push_kit_auto_init_enabled"
+            android:value="true" />
+        <service
+            android:name="com.owncloud.android.services.huawei.NCHuaweiMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
     <queries>

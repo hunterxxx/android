@@ -17,21 +17,17 @@
 	},
 	"client":{
 		"cp_id":"5190049000023553714",
-		"product_id":"736430079245745275",
-		"client_id":"638183528277752704",
-		"client_secret":"711474B911E7D6FC1D10DB9DE1FAC194E7DFAE2225AFF6372FC8A76ACE9658B9",
-		"project_id":"736430079245745275",
-		"app_id":"104371139",
-		"api_key":"CgB6e3x9Cy2Y2RdjevCWKKksgfGPViD5ztby7NZc2JY9z7+wuRjZ44aJESgjtkpwZvJlNl+dE4a9ChQGOCoKUgug",
-		"package_name":"com.nextcloud.client"
-	},
-	"oauth_client":{
-		"client_id":"104371139",
-		"client_type":1
+		"product_id":"736430079245778227",
+		"client_id":"646415165809507072",
+		"client_secret":"71013B0F4FDFB72E1333B201012BFE80E7C66F830E97032D1EF92C6E70AFE903",
+		"project_id":"736430079245778227",
+		"app_id":"104504335",
+		"api_key":"CgB6e3x9hFGO3gZcVigsTXYpnqF+Oj9Fm1hNLhupYvuM/mvV56mea3GaLJAEKfDZ4M3OYVV3UGW6mUEz11kL6EkV",
+		"package_name":"com.nextcloud.client.huawei"
 	},
 	"app_info":{
-		"app_id":"104371139",
-		"package_name":"com.nextcloud.client"
+		"app_id":"104504335",
+		"package_name":"com.nextcloud.client.huawei"
 	},
 	"service":{
 		"analytics":{
@@ -53,17 +49,10 @@
 	"configuration_version":"3.0",
 	"appInfos":[
 		{
-			"package_name":"com.nextcloud.client",
-			"client":{
-				"app_id":"104371139"
-			},
+			"package_name":"com.nextcloud.client.huawei",
 			"app_info":{
-				"package_name":"com.nextcloud.client",
-				"app_id":"104371139"
-			},
-			"oauth_client":{
-				"client_type":1,
-				"client_id":"104371139"
+				"package_name":"com.nextcloud.client.huawei",
+				"app_id":"104504335"
 			}
 		}
 	]

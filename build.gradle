@@ -145,7 +145,7 @@ android {
 
     // huawei jks
     signingConfigs {
-        config {
+        huawei {
             // Replace xxx with your signing certificate.
             keyAlias 'key0'
             keyPassword '123456'
@@ -185,12 +185,11 @@ android {
         buildTypes {
             debug {
                 testCoverageEnabled (project.hasProperty('coverage'))
-                signingConfig signingConfigs.config
+                debuggable true
+                signingConfig null
             }
             release {
-                signingConfig signingConfigs.config
                 minifyEnabled false
-                proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             }
         }
 
@@ -209,6 +208,8 @@ android {
             huawei {
                 applicationId 'com.nextcloud.client'
                 dimension "default"
+                applicationIdSuffix=".huawei"
+                signingConfig signingConfigs.huawei
             }
 
             versionDev {
@@ -438,10 +439,6 @@ dependencies {
 //    androidJacocoAnt "org.jacoco:org.jacoco.agent:${jacocoVersion}"
 
     implementation "com.github.stateless4j:stateless4j:2.6.0"
-
-//    // Huawei Dependencies
-    implementation 'com.huawei.agconnect:agconnect-core:1.5.2.300'
-    implementation 'com.huawei.hms:push:5.1.1.301'
 }
 
 configurations.all {
