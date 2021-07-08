@@ -62,9 +62,6 @@ public class NCHuaweiMessagingService extends HmsMessageService  {
 
     @Override
     public void onNewToken(@NonNull String newToken) {
-        final String TAG = "PushDemoLog";
-        Log.i(TAG, "received refresh token:" + newToken);
-
         super.onNewToken(newToken);
 
         if (!TextUtils.isEmpty(getResources().getString(R.string.push_server_url))) {
