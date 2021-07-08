@@ -106,11 +106,12 @@ def versionBuild = 0 // 0-50=Alpha / 51-98=RC / 90-99=stable
 for (TaskExecutionRequest tr : getGradle().getStartParameter().getTaskRequests()) {
     for (String arg : tr.args) {
         // any gplay, but only exact "build", as e.g. buildGeneric shall not apply gplay.grade
-//        if (arg.contains("Gplay") || arg.contains("lint") || arg.contains("ExecuteScreenshot") || arg == "build") {
-//            apply from: 'gplay.gradle'
-//            System.console().println("Applying gplay.gradle")
-//        }
-        if (arg.contains("Huawei") || arg.contains("lint") || arg.contains("ExecuteScreenshot") || arg ==
+        if (arg.contains("Gplay") || arg.contains("lint") || arg.contains("ExecuteScreenshot") || arg == "build") {
+            apply from: 'gplay.gradle'
+            System.console().println("Applying gplay.gradle")
+        }
+        // any huawei, but only exact "build", as e.g. buildGeneric shall not apply huawei.grade
+        else if (arg.contains("Huawei") || arg.contains("lint") || arg.contains("ExecuteScreenshot") || arg ==
             "build") {
             apply from: 'huawei.gradle'
             System.console().println("Applying huawei.gradle")
@@ -438,7 +439,7 @@ dependencies {
 
     implementation "com.github.stateless4j:stateless4j:2.6.0"
 
-    // Huawei Dependencies
+//    // Huawei Dependencies
     implementation 'com.huawei.agconnect:agconnect-core:1.5.2.300'
     implementation 'com.huawei.hms:push:5.1.1.301'
 }

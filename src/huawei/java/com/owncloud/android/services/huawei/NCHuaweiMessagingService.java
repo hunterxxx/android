@@ -20,17 +20,56 @@
  */
 package com.owncloud.android.services.huawei;
 
+import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.huawei.hms.push.HmsMessageService;
+import com.huawei.hms.push.RemoteMessage;
+import com.nextcloud.client.account.UserAccountManager;
+import com.nextcloud.client.jobs.BackgroundJobManager;
+import com.nextcloud.client.jobs.NotificationWork;
+import com.nextcloud.client.preferences.AppPreferences;
+import com.owncloud.android.R;
+import com.owncloud.android.utils.PushUtils;
+
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import androidx.annotation.NonNull;
+import dagger.android.AndroidInjection;
 
 public class NCHuaweiMessagingService extends HmsMessageService  {
-    private static final String TAG = "PushDemoLog";
+    @Inject AppPreferences preferences;
+    @Inject UserAccountManager accountManager;
+    @Inject BackgroundJobManager backgroundJobManager;
+
     @Override
-    public void onNewToken(String token) {
-        super.onNewToken(token);
-        Log.i(TAG, "receive token:" + token);
-        Toast.makeText(this, "receive token:" + token, Toast.LENGTH_LONG).show();
+    public void onCreate() {
+        super.onCreate();
+        AndroidInjection.inject(this);
+    }
+
+    @Override
+    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+        final Map<String, String> data = remoteMessage.getDataOfMap();
+        final String subject = data.get(NotificationWork.KEY_NOTIFICATION_SUBJECT);
+        final String signature = data.get(NotificationWork.KEY_NOTIFICATION_SIGNATURE);
+        if (subject != null && signature != null) {
+            backgroundJobManager.startNotificationJob(subject, signature);
+        }
+    }
+
+    @Override
+    public void onNewToken(@NonNull String newToken) {
+        final String TAG = "PushDemoLog";
+        Log.i(TAG, "received refresh token:" + newToken);
+
+        super.onNewToken(newToken);
+
+        if (!TextUtils.isEmpty(getResources().getString(R.string.push_server_url))) {
+            preferences.setPushToken(newToken);
+            PushUtils.pushRegistrationToServer(accountManager, preferences.getPushToken());
+        }
     }
 }
